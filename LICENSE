@@ -1,0 +1,107 @@
+# CrashReportWatcher
+
+> A lightweight PowerShell utility to monitor and capture Windows system and application crash logs — ideal for gamers, developers, and system admins tracking critical issues after crashes.
+
+## 📌 Overview
+
+CrashReportWatcher is a diagnostic tool written in PowerShell that fetches and stores critical error logs from the Windows Event Viewer. It is especially helpful for diagnosing system crashes after gaming sessions, BSODs, or software instability (e.g., unstable drivers or RGB tools like GIGABYTE Control Center).
+
+The tool scans both **System** and **Application** logs from the last 12 hours and saves them to timestamped `.txt` reports.
+
+---
+
+## ⚙️ Features
+
+- ✅ Collects critical and error-level logs from:
+  - **System logs** (e.g., Kernel-Power, Driver crashes)
+  - **Application logs** (e.g., crashes of `.exe` programs)
+- 🕒 Filters logs from the **last 12 hours** (can be changed in script)
+- 📁 Saves reports into a `/logs` folder with timestamped filenames
+- 🔒 Runs locally, no internet connection required
+- 🖥️ Great for offline debugging or pre-reporting issues to support/devs
+
+---
+
+## 🚀 How to Use
+
+1. **Clone or download the project**
+
+```bash
+git clone https://github.com/your-username/CrashReportWatcher.git
+cd CrashReportWatcher
+````
+
+2. **Open PowerShell as Administrator**
+
+3. **Run the script**
+
+```powershell
+.\watcher.ps1
+```
+
+4. **Check the logs**
+
+Look inside the `logs/` folder — a `.txt` report will be created with the timestamp of the scan.
+
+---
+
+## 📂 Project Structure
+
+```
+CrashReportWatcher/
+├── watcher.ps1         # Main script
+├── README.md           # This file
+├── LICENSE             # MIT License
+└── logs/               # Folder where reports are saved
+```
+
+---
+
+## 🔧 Customization
+
+You can change the time range (default: 12 hours) by editing this line in `watcher.ps1`:
+
+```powershell
+$timeRange = (Get-Date).AddHours(-12)
+```
+
+Set it to `-24` for 1-day logs, `-6` for 6 hours, etc.
+
+---
+
+## 🖥️ Requirements
+
+* Windows 10, 11, or Server (PowerShell 5.1+)
+* Administrator privileges (to access Event Viewer)
+* No external dependencies
+
+---
+
+## 📘 Example Output
+
+Example log file contents:
+
+```
+Crash Report - 8/3/2025 2:14:31 PM
+=========================
+TimeCreated       Id   Level  ProviderName   Message
+2025-08-03 14:00  1000 Error  Application    Faulting application name: Game.exe...
+
+---
+
+TimeCreated       Id   Level  ProviderName   Message
+2025-08-03 13:58  41    Critical Kernel-Power The system has rebooted without...
+```
+
+---
+
+## 🪪 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🙋‍♂️ Author
+
+Created by **Fernando Vaz Bela**
+GitHub: [@fertwbr](https://github.com/fertwbr)
